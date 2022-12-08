@@ -40,14 +40,11 @@ if query is not None and query != '':
 
         blob_l =[]
         d = response.json()
-        #st.write(d)
+
         for image in d.keys() :
-            #st.write(image)
-            file_name = f"flickr30k_images/{image}"
-            #st.write(file_name)
-            blob = bucket.get_blob(file_name)
-            #st.write(blob)
+            blob = bucket.get_blob(image)
             blob_l.append(blob)
+
         rows = len(d.keys())
         for x in range(rows):
             blob_n = blob_l[x]
@@ -55,3 +52,12 @@ if query is not None and query != '':
             st.image(img)
     else:
         st.write(response.json())
+
+
+# columns = st.columns(2)
+
+# first_name = columns[0].text_input("First name", value="John")
+# columns[0].write(first_name)
+
+# last_name = columns[1].text_input("Last name", value="Doe")
+# columns[1].write(last_name)
